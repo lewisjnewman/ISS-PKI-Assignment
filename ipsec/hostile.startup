@@ -1,0 +1,7 @@
+ifconfig eth0 hw ether 60:66:66:66:66:66
+ifconfig eth0 198.51.100.254
+
+# ideally, start capturing traffic so we can see the ipsec tunnel being created
+# HOWEVER, this seems to crash the vm :-(
+# tcpdump -s0 -i eth0 -c 20 -w /hostlab/hostile-dump01.pcap &
+

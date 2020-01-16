@@ -1,0 +1,13 @@
+ifconfig eth1 hw ether 50:00:bb:11:11:11
+ifconfig eth2 hw ether 50:00:bb:22:22:22
+
+ifconfig eth1 10.0.0.1/27
+ifconfig eth2 198.51.100.2/24
+
+route add default gw 198.51.100.1
+
+# iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE 
+
+sysctl -p
+
+service ipsec start

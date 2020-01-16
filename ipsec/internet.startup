@@ -1,0 +1,7 @@
+ifconfig eth10 hw ether 00:00:00:00:00:10
+ifconfig eth11 hw ether 00:00:00:00:00:11
+
+ifconfig eth10 192.0.2.1/24
+ifconfig eth11 198.51.100.1/24
+
+# iptables -t nat -A POSTROUTING -o eth20 -j MASQUERADE

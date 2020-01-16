@@ -1,0 +1,3 @@
+ifconfig eth0 hw ether a0:aa:aa:aa:aa
+ifconfig eth0 172.22.22.42/29
+route add default gw 172.22.22.41
