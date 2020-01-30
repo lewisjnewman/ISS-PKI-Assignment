@@ -1,0 +1,8 @@
+
+#setup internal network card
+ifconfig eth1 192.168.65.10/24
+ifconfig eth1 up
+
+#setup external network card
+ifconfig eth2 213.1.133.2/27
+ifconfig eth2 up
