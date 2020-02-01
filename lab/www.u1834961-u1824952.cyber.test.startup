@@ -1,0 +1,7 @@
+
+#set interface ip address
+ifconfig eth0 192.168.65.10/24 up
+
+route add default gw 192.168.65.1
+
+#start apache web server

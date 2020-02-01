@@ -1,0 +1,18 @@
+#internal interface
+ifconfig eth0 192.168.65.1/24 up
+
+#external interface
+ifconfig eth1 213.1.133.2/27 up
+
+#alias for http server
+ifconfig eth1:1 213.1.133.3/27 up
+
+#add default route
+route add default gw 213.1.133.1
+
+#setup 1:1 nat for http server
+iptables -t nat -A PREROUTING -i eth1 -d 213.1.133.3 -j DNAT --to-destination 192.168.65.1
+iptables -t nat -A POSTROUTING -s 192.168.65.10 -j SNAT --to-source 213.1.133.3
+
+#setup other nat
+iptables -t nat -A POSTROUTING -o eth1 -j SNAT --to-source 213.1.133.2

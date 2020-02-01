@@ -1,0 +1,12 @@
+
+#interface on same warwick isp segment
+ifconfig eth0 213.1.133.1 up
+
+#interface on external1
+ifconfig eth1 20.0.0.1/8 up
+
+#interface on external2
+ifconfig eth2 182.0.0.1/8 up
+
+#interface on external3
+ifconfig eth3 54.0.0.1/8 up
