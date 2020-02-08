@@ -1,0 +1,2 @@
+gw.u1834961-u1824952.cyber.test: internet
+mobusr1 mobusr2 mobusr3: gw.u1834961-u1824952.cyber.test

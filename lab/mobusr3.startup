@@ -1,3 +1,6 @@
 ifconfig eth0 54.100.211.91/8 up
 
 route add default gw 54.0.0.1
+
+#start the vpn
+service ipsec start
