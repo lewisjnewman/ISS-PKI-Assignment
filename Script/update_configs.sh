@@ -16,8 +16,12 @@ cp client_ipsec.secrets lab/mobusr2/etc/ipsec.secrets
 cp client_ipsec.conf lab/mobusr3/etc/ipsec.conf
 cp client_ipsec.secrets lab/mobusr3/etc/ipsec.secrets
 
+#move client configs into rogue1
+cp client_ipsec.conf lab/rogue1/etc/ipsec.conf
+cp client_ipsec.secrets lab/rogue1/etc/ipsec.secrets
 
 #update the ipsec.conf files with the correct leftid parameters
 sed 's/{DEVICENAME}/mobusr1/g' -i lab/mobusr1/etc/ipsec.conf
 sed 's/{DEVICENAME}/mobusr2/g' -i lab/mobusr2/etc/ipsec.conf
 sed 's/{DEVICENAME}/mobusr3/g' -i lab/mobusr3/etc/ipsec.conf
+sed 's/{DEVICENAME}/rogue1/g' -i lab/rogue1/etc/ipsec.conf

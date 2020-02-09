@@ -117,7 +117,7 @@ ipsec pki --gen --type rsa --size 4096 --outform pem > rogue1.key.pem
 ipsec pki --pub --in rogue1.key.pem --type rsa --outform pem > rogue1.csr.pem
 
 #sign certificate with intermediate certificate authority key
-ipsec pki --issue --in rogue1.csr.pem --lifetime 365 --cacert ica.crt.pem --cakey ica.key.pem --dn "C=UK, O=University of Warwick - Cyber Security Centre, OU =ISS CW2, CN=mobusr3" --flag serverAuth --flag ikeIntermediate --outform pem > rogue1.crt.pem
+ipsec pki --issue --in rogue1.csr.pem --lifetime 365 --cacert ica.crt.pem --cakey ica.key.pem --dn "C=UK, O=University of Warwick - Cyber Security Centre, OU =ISS CW2, CN=rogue1" --flag serverAuth --flag ikeIntermediate --outform pem > rogue1.crt.pem
 
 echo "Created rogue1 Certificate"
 
@@ -197,4 +197,4 @@ cp ica.crl.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/crls/
 
 cd ..
 
-#rm -r tmp-keys
+rm -r tmp-keys
