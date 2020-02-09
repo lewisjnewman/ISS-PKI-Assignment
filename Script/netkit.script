@@ -36,6 +36,7 @@ mkdir -p I_CA/etc/ipsec.d
 mkdir -p I_CA/etc/ipsec.d/cacerts
 mkdir -p I_CA/etc/ipsec.d/certs
 mkdir -p I_CA/etc/ipsec.d/private
+mkdir -p I_CA/etc/ipsec.d/crls
 mkdir -p CA/etc/ipsec.d
 mkdir -p CA/etc/ipsec.d/cacerts
 mkdir -p CA/etc/ipsec.d/private
