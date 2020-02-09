@@ -59,6 +59,9 @@ ipsec pki --pub --in ica.key.pem --type rsa --outform pem > ica.csr.pem
 # sign certificate with root key
 ipsec pki --issue --ca --in ica.csr.pem --lifetime 365 --cacert CA.crt.pem --cakey CA.key.pem --dn "C=UK, O=University of Warwick - Cyber Security Centre, OU=ISS CW2, CN=i_ca.cyber.test" --san 192.168.65.5 --san @192.168.65.5 --flag serverAuth --flag ikeIntermediate --outform pem > ica.crt.pem
 
+#Create Revocation list 
+ipsec pki --signcrl --carcert ica.crt.pem --cakey ica.key.pem --reason superseeded --cert rogueOne.crt.pem > ica.crl.pem
+
 echo "Created Intermediate CA Certificate"
 
 ###############################################################################################################
@@ -111,6 +114,18 @@ echo "Created mobusr3 Certificate"
 # move keys/certificates to right place
 
 
+#rogueOne
+# generate key
+ipsec pki --gen --type rsa --size 4096 --outform pem > rogueOne.key.pem
+
+# generate csr
+ipsec pki --pub --in rogueOne.key.pem --type --rsa --outform pem > rogueOne.csr.pem
+
+#sign certificate with intermediate certificate authority key
+ipsec pki --issue --in rogueOne.csr.pem --lifetime 365 --cacert ica.crt.pem --cakey ica.key.pem --
+dn "C=UK, O=University of Warwick - Cyber Security Centre, OU =ISS CW2, CN=mobusr3" --flag serverAuth --flag ikeIntermediate --outform pem > rogueOne.crt.pem
+
+
 # copy CA keys
 cp CA.key.pem ../CA/etc/ipsec.d/private/
 cp CA.crt.pem ../CA/etc/ipsec.d/cacerts/
@@ -160,6 +175,12 @@ cp CA.crt.pem ../mobusr2/etc/ipsec.d/cacerts/
 # copy mobusr3 keys
 cp mobusr3.key.pem ../mobusr3/etc/ipsec.d/private/client.key.pem
 cp mobusr3.crt.pem ../mobusr3/etc/ipsec.d/certs/client.crt.pem
+
+cp CA.crt.pem ../mobusr3/etc/ipsec.d/cacerts/
+
+# copy rogueOne keys
+cp rogueOne.key.pem ../rogueOne/etc/ipsec.d/private/client.key.pem
+cp rogueOne.crt.pem ../mobusr3/etc/ipsec.d/certs/client.crt.pem
 
 cp CA.crt.pem ../mobusr3/etc/ipsec.d/cacerts/
 
