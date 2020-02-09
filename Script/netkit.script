@@ -59,6 +59,11 @@ echo 'Internet[2]=external2' >> lab.conf
 echo 'Internet[3]=external3' >> lab.conf
 echo 'I_CA[0]=warwicklan' >> lab.conf
 
+touch lab.dep
+echo 'gw.u1834961-u1824952.cyber.test: internet' >> lab.dep
+echo 'mobusr1 mobusr2 mobusr3 rogue1: gw.u1834961-u1824952.cyber.test' >> lab.dep
+echo 'I_CA a www.u1834961-u1824952.cyber.test: gw.u1834961-u1824952.cyber.test'
+
 touch gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth0 192.168.65.1/24 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth1 213.1.133.2/27 up' >> gw.u1834961-u1824952.cyber.test.startup
