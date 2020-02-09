@@ -62,7 +62,7 @@ echo 'I_CA[0]=warwicklan' >> lab.conf
 touch gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth0 192.168.65.1/24 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth1 213.1.133.2/27 up' >> gw.u1834961-u1824952.cyber.test.startup
-echo 'route add default gw 213.1.133.1 eth0' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'route add default gw 213.1.133.1 eth1' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A PREROUTING -i eth1 -d 213.1.133.3 -j DNAT --to-destination 192.168.65.1' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A POSTROUTING -s 192.168.65.10 -j SNAT --to-source 213.1.133.3' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A POSTROUTING -o eth1 -j SNAT --to-source 213.1.133.2' >> gw.u1834961-u1824952.cyber.test.startup
@@ -97,7 +97,7 @@ echo '#start the vpn' >> mobusr3.startup
 echo 'service ipsec start' >> mobusr3.startup
 
 touch rogue1.startup
-echo 'ifconfig eth0 20.10.0.5/8 up' >> mobusr1.startup
+echo 'ifconfig eth0 20.10.0.15/8 up' >> mobusr1.startup
 echo 'route add default gw 20.0.0.1' >> mobusr1.startup
 echo '#start the vpn' >> mobusr1.startup
 echo 'service ipsec start' >> mobusr1.startup
