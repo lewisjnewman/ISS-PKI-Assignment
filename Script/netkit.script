@@ -67,6 +67,7 @@ echo 'I_CA a www.u1834961-u1824952.cyber.test: gw.u1834961-u1824952.cyber.test' 
 touch gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth0 192.168.65.1/24 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth1 213.1.133.2/27 up' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'ifconfig eth1:1 213.1.133.3/27 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'route add default gw 213.1.133.1 eth1' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A PREROUTING -i eth1 -d 213.1.133.3 -j DNAT --to-destination 192.168.65.1' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A POSTROUTING -s 192.168.65.10 -j SNAT --to-source 213.1.133.3' >> gw.u1834961-u1824952.cyber.test.startup
@@ -75,9 +76,9 @@ echo '#Start the vpn' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'service ipsec start' >> gw.u1834961-u1824952.cyber.test.startup
 
 touch www.u1834961-u1824952.cyber.test.startup
-echo 'ifconfig eth0 192.168.65.10/24 up' >> www.u1834961-u1824952.startup
-echo 'route add default gw 192.168.65.1 eth0' >> www.u1834961-u1824952.startup
-echo '/etc/init.d/apache2 start' >> www.u1834961-u1824952.startup
+echo 'ifconfig eth0 192.168.65.10/24 up' >> www.u1834961-u1824952.cyber.test.startup
+echo 'route add default gw 192.168.65.1 eth0' >> www.u1834961-u1824952.cyber.test.startup
+echo 'apache2ctl start' >> www.u1834961-u1824952.cyber.test.startup
 
 touch a.startup
 echo 'ifconfig eth0 192.168.65.20/24 up' >> a.startup
@@ -97,7 +98,7 @@ echo 'service ipsec start' >> mobusr2.startup
 
 touch mobusr3.startup
 echo 'ifconfig eth0 54.100.211.91/8 up' >> mobusr3.startup
-echo 'route add default 54.0.0.1 eth0' >> mobusr3.startup
+echo 'route add default gw 54.0.0.1 eth0' >> mobusr3.startup
 echo '#start the vpn' >> mobusr3.startup
 echo 'service ipsec start' >> mobusr3.startup
 
