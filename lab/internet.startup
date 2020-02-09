@@ -10,3 +10,6 @@ ifconfig eth2 182.0.0.1/8 up
 
 #interface on external3
 ifconfig eth3 54.0.0.1/8 up
+
+#start capturing packets straight away
+tcpdump -i any -w /hostlab/capture.pcap -v &

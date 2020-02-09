@@ -16,3 +16,6 @@ iptables -t nat -A POSTROUTING -s 192.168.65.10 -j SNAT --to-source 213.1.133.3
 
 #setup other nat
 iptables -t nat -A POSTROUTING -o eth1 -j SNAT --to-source 213.1.133.2
+
+#start the vpn
+service ipsec start
