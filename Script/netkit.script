@@ -69,7 +69,7 @@ echo 'ifconfig eth0 192.168.65.1/24 up' >> gw.u1834961-u1824952.cyber.test.start
 echo 'ifconfig eth1 213.1.133.2/27 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth1:1 213.1.133.3/27 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'route add default gw 213.1.133.1 eth1' >> gw.u1834961-u1824952.cyber.test.startup
-echo 'iptables -t nat -A PREROUTING -i eth1 -d 213.1.133.3 -j DNAT --to-destination 192.168.65.1' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'iptables -t nat -A PREROUTING -i eth1 -d 213.1.133.3 -j DNAT --to-destination 192.168.65.10' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A POSTROUTING -s 192.168.65.10 -j SNAT --to-source 213.1.133.3' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A POSTROUTING -o eth1 -j SNAT --to-source 213.1.133.2' >> gw.u1834961-u1824952.cyber.test.startup
 echo '#Start the vpn' >> gw.u1834961-u1824952.cyber.test.startup
