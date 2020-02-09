@@ -60,7 +60,7 @@ echo 'Internet[3]=external3' >> lab.conf
 echo 'I_CA[0]=warwicklan' >> lab.conf
 
 touch lab.dep
-echo 'gw.u1834961-u1824952.cyber.test: internet' >> lab.dep
+echo 'gw.u1834961-u1824952.cyber.test: Internet' >> lab.dep
 echo 'mobusr1 mobusr2 mobusr3 rogue1: gw.u1834961-u1824952.cyber.test' >> lab.dep
 echo 'I_CA a www.u1834961-u1824952.cyber.test: gw.u1834961-u1824952.cyber.test' >> lab.dep
 
