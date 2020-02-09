@@ -1,0 +1,55 @@
+#! /bin/sh
+# Remember to use 'chmod +x' (o 'chmod 500') on the .sh file. The script will self-destruct if uncommented. 
+
+rm -rf "$(dirname "$0")/lab"
+mkdir "$(dirname "$0")/lab"
+cd "$(dirname "$0")/lab"
+
+mkdir -p gw.u1834961-u1824952.cyber.test
+mkdir -p www.u1834961-u1824952
+mkdir -p a
+mkdir -p mobusr1
+mkdir -p mobusr2
+mkdir -p mobusr3
+mkdir -p Internet
+touch lab.conf
+echo 'gw.u1834961-u1824952.cyber.test[0]=192.168.65.1' >> lab.conf
+echo 'gw.u1834961-u1824952.cyber.test[1]=213.1.133.2' >> lab.conf
+echo 'www.u1834961-u1824952[0]=192.168.65.10' >> lab.conf
+echo 'a[0]=192.168.65.6' >> lab.conf
+echo 'mobusr1[0]=20.10.0.5' >> lab.conf
+echo 'mobusr2[0]=182.10.10.50' >> lab.conf
+echo 'mobusr3[0]=54.100.211.91' >> lab.conf
+echo 'Internet[0]=213.1.133.1' >> lab.conf
+echo 'Internet[1]=20.0.0.1' >> lab.conf
+echo 'Internet[2]=182.0.0.1' >> lab.conf
+echo 'Internet[3]=54.0.0.1' >> lab.conf
+touch gw.u1834961-u1824952.cyber.test.startup
+echo 'ifconfig eth0 192.168.65.1/24 up' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'ifconfig eth1 213.1.133.2/27 up' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'route add -net 213.1.133.1/27 gw 213.1.133.1 dev eth0' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'iptables -t nat -A PREROUTING -i eth1 -d 213.1.133.3 -j DNAT --to-destination 192.168.65.1' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'iptables -t nat -A POSTROUTING' >> gw.u1834961-u1824952.cyber.test.startup
+touch www.u1834961-u1824952.startup
+echo 'ifconfig eth0 192.168.65.10/24 up' >> www.u1834961-u1824952.startup
+echo 'route add -net 192.168.65.1/24 gw 192.168.65.1 dev eth0' >> www.u1834961-u1824952.startup
+echo '/etc/init.d/apache2 start' >> www.u1834961-u1824952.startup
+touch a.startup
+echo 'ifconfig eth0 192.168.65.6/24 up' >> a.startup
+echo 'route add -net 192.168.65.1/24 gw 192.168.65.1 dev eth0' >> a.startup
+touch mobusr1.startup
+echo 'ifconfig eth0 20.10.0.5/8 up' >> mobusr1.startup
+echo 'route add -net 20.0.0.1/8 gw 20.0.0.1 dev eth0' >> mobusr1.startup
+touch mobusr2.startup
+echo 'ifconfig eth0 182.10.10.50/8 up' >> mobusr2.startup
+echo 'route add -net 182.0.0.1/8 gw 182.0.0.1 dev eth0' >> mobusr2.startup
+touch mobusr3.startup
+echo 'ifconfig eth0 54.100.211.91/8 up' >> mobusr3.startup
+echo 'route add -net 54.0.0.1/8 gw 54.0.0.1 dev eth0' >> mobusr3.startup
+touch Internet.startup
+echo 'ifconfig eth0 213.1.133.1/27 up' >> Internet.startup
+echo 'ifconfig eth1 20.0.0.1/8 up' >> Internet.startup
+echo 'ifconfig eth2 182.0.0.1/8 up' >> Internet.startup
+echo 'ifconfig eth3 54.0.0.1/8 up' >> Internet.startup
+echo '/etc/init.d/apache2 start' >> Internet.startup
+#rm "../$0"
