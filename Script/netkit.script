@@ -5,43 +5,70 @@ rm -rf "$(dirname "$0")/lab"
 mkdir "$(dirname "$0")/lab"
 cd "$(dirname "$0")/lab"
 
-mkdir -p gw.u1834961-u1824952.cyber.test/etc/
-mkdir -p www.u1834961-u1824952
+mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d
+mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts
+mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/private
+mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/certs
+mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/crls
+mkdir -p www.u1834961-u1824952.cyber.test/etc/ipsec.d
+mkdir -p www.u1834961-u1824952.cyber.test/etc/ipsec.d/certs
+mkdir -p www.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts
+mkdir -p www.u1834961-u1824952.cyber.test/etc/ipsec.d/private
 mkdir -p a
 mkdir -p mobusr1/etc/ipsec.d
+mkdir -p mobusr1/etc/ipsec.d/cacerts
+mkdir -p mobusr1/etc/ipsec.d/private
+mkdir -p mobusr1/etc/ipsec.d/certs
 mkdir -p mobusr2/etc/ipsec.d
+mkdir -p mobusr2/etc/ipsec.d/cacerts
+mkdir -p mobusr2/etc/ipsec.d/private
+mkdir -p mobusr2/etc/ipsec.d/certs
 mkdir -p mobusr3/etc/ipsec.d
+mkdir -p mobusr3/etc/ipsec.d/cacerts
+mkdir -p mobusr3/etc/ipsec.d/private
+mkdir -p mobusr3/etc/ipsec.d/certs
+mkdir -p rogue1/etc/ipsec.d
+mkdir -p rogue1/etc/ipsec.d/cacerts
+mkdir -p rogue1/etc/ipsec.d/private
+mkdir -p rogue1/etc/ipsec.d/certs
 mkdir -p Internet
 mkdir -p I_CA/etc/ipsec.d
+mkdir -p I_CA/etc/ipsec.d/cacerts
+mkdir -p I_CA/etc/ipsec.d/certs
+mkdir -p I_CA/etc/ipsec.d/private
 mkdir -p CA/etc/ipsec.d
+mkdir -p CA/etc/ipsec.d/cacerts
+mkdir -p CA/etc/ipsec.d/private
 
 touch lab.conf
 echo 'LAB_DESCRIPTION="pskassign"' >> lab.conf
 echo 'LAB_VERSION="1.0"' >> lab.conf
 echo 'LAB_AUTHOR="J.smith-l.Newman"' >> lab.conf
-echo 'gw.u1834961-u1824952.cyber.test[0]=192.168.65.1' >> lab.conf
-echo 'gw.u1834961-u1824952.cyber.test[1]=213.1.133.2' >> lab.conf
-echo 'www.u1834961-u1824952[0]=192.168.65.10' >> lab.conf
-echo 'a[0]=192.168.65.20' >> lab.conf
-echo 'mobusr1[0]=20.10.0.5' >> lab.conf
-echo 'mobusr2[0]=182.10.10.50' >> lab.conf
-echo 'mobusr3[0]=54.100.211.91' >> lab.conf
-echo 'Internet[0]=213.1.133.1' >> lab.conf
-echo 'Internet[1]=20.0.0.1' >> lab.conf
-echo 'Internet[2]=182.0.0.1' >> lab.conf
-echo 'Internet[3]=54.0.0.1' >> lab.conf
-echo 'I_CA[0]=192.168.65.4' >> lab.conf
+echo 'gw.u1834961-u1824952.cyber.test[0]=warwicklan' >> lab.conf
+echo 'gw.u1834961-u1824952.cyber.test[1]=warwickisp' >> lab.conf
+echo 'www.u1834961-u1824952.cyber.test[0]=warwicklan' >> lab.conf
+echo 'a[0]=warwicklan' >> lab.conf
+echo 'mobusr1[0]=external1' >> lab.conf
+echo 'mobusr2[0]=external2' >> lab.conf
+echo 'mobusr3[0]=external3' >> lab.conf
+echo 'rogue1[0]=external1' >> lab.conf
+echo 'Internet[0]=warwickisp' >> lab.conf
+echo 'Internet[1]=external1' >> lab.conf
+echo 'Internet[2]=external2' >> lab.conf
+echo 'Internet[3]=external3' >> lab.conf
+echo 'I_CA[0]=warwicklan' >> lab.conf
 
 touch gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth0 192.168.65.1/24 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth1 213.1.133.2/27 up' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'route add -net 213.1.133.1/27 gw 213.1.133.1 dev eth0' >> gw.u1834961-u1824952.cyber.test.startup
 echo 'iptables -t nat -A PREROUTING -i eth1 -d 213.1.133.3 -j DNAT --to-destination 192.168.65.1' >> gw.u1834961-u1824952.cyber.test.startup
-echo 'iptables -t nat -A POSTROUTING' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'iptables -t nat -A POSTROUTING -s 192.168.65.10 -j SNAT --to-source 213.1.133.3' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'iptables -t nat -A POSTROUTING -o eth1 -j SNAT --to-source 213.1.133.2' >> gw.u1834961-u1824952.cyber.test.startup
 echo '#Start the vpn' >> gw.u1834961-u1824952.cyber.test.startup
-echo ' service ipsec start' >> gw.u1834961-u1824952.cyber.test.startup
+echo 'service ipsec start' >> gw.u1834961-u1824952.cyber.test.startup
 
-touch www.u1834961-u1824952.startup
+touch www.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth0 192.168.65.10/24 up' >> www.u1834961-u1824952.startup
 echo 'route add -net 192.168.65.1/24 gw 192.168.65.1 dev eth0' >> www.u1834961-u1824952.startup
 echo '/etc/init.d/apache2 start' >> www.u1834961-u1824952.startup
@@ -49,26 +76,32 @@ echo '/etc/init.d/apache2 start' >> www.u1834961-u1824952.startup
 touch a.startup
 echo 'ifconfig eth0 192.168.65.20/24 up' >> a.startup
 echo 'route add -net 192.168.65.1/24 gw 192.168.65.1 dev eth0' >> a.startup
-touch mobusr1.startup
 
+touch mobusr1.startup
 echo 'ifconfig eth0 20.10.0.5/8 up' >> mobusr1.startup
 echo 'route add -net 20.0.0.1/8 gw 20.0.0.1 dev eth0' >> mobusr1.startup
 echo '#start the vpn' >> mobusr1.startup
 echo 'service ipsec start' >> mobusr1.startup
-touch mobusr2.startup
 
+touch mobusr2.startup
 echo 'ifconfig eth0 182.10.10.50/8 up' >> mobusr2.startup
 echo 'route add -net 182.0.0.1/8 gw 182.0.0.1 dev eth0' >> mobusr2.startup
 echo '#start the vpn' >> mobusr2.startup
 echo 'service ipsec start' >> mobusr2.startup
-touch mobusr3.startup
 
+touch mobusr3.startup
 echo 'ifconfig eth0 54.100.211.91/8 up' >> mobusr3.startup
 echo 'route add -net 54.0.0.1/8 gw 54.0.0.1 dev eth0' >> mobusr3.startup
 echo '#start the vpn' >> mobusr3.startup
 echo 'service ipsec start' >> mobusr3.startup
-touch Internet.startup
 
+touch rogue1.startup
+echo 'ifconfig eth0 20.10.0.5/8 up' >> mobusr1.startup
+echo 'route add -net 20.0.0.1/8 gw 20.0.0.1 dev eth0' >> mobusr1.startup
+echo '#start the vpn' >> mobusr1.startup
+echo 'service ipsec start' >> mobusr1.startup
+
+touch Internet.startup
 echo 'ifconfig eth0 213.1.133.1/27 up' >> Internet.startup
 echo 'ifconfig eth1 20.0.0.1/8 up' >> Internet.startup
 echo 'ifconfig eth2 182.0.0.1/8 up' >> Internet.startup
@@ -76,7 +109,12 @@ echo 'ifconfig eth3 54.0.0.1/8 up' >> Internet.startup
 echo 'tcpdump -i any -w /hostlab/internetCapture.pcap &' >> Internet.startup
 
 
-
 touch I_CA.startup
 echo 'ifconfig eth0 192.168.65.4/24 up' >> I_CA.startup
-rm "../$0"
+
+cd ..
+
+/bin/bash build_x509.sh
+/bin/bash update_configs.sh
+
+#rm "../$0"
