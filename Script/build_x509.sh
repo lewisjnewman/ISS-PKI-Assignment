@@ -32,6 +32,9 @@ ipsec pki --issue --in www.csr.pem --lifetime 365 --cacert CA.crt.pem --cakey CA
 
 echo "Created WWW Certificate"
 
+# create new diffie hellman group for increased https security
+openssl dhparam -out www.dhparam.pem 2048
+
 ###############################################################################################################
 ###############################################################################################################
 #vpn gw certificate creation
@@ -149,11 +152,10 @@ cp ica.crt.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
 
 
 # copy www keys
-cp www.key.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ipsec.d/private/
-cp www.crt.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
+cp www.key.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/private/
+cp www.crt.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 
-cp CA.crt.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
-
+cp www.dhparam.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 
 
 # copy icakeys

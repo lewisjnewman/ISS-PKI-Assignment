@@ -25,3 +25,8 @@ sed 's/{DEVICENAME}/mobusr1/g' -i lab/mobusr1/etc/ipsec.conf
 sed 's/{DEVICENAME}/mobusr2/g' -i lab/mobusr2/etc/ipsec.conf
 sed 's/{DEVICENAME}/mobusr3/g' -i lab/mobusr3/etc/ipsec.conf
 sed 's/{DEVICENAME}/rogue1/g' -i lab/rogue1/etc/ipsec.conf
+
+#update https configs
+cp ssl-params.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/conf-available/
+cp default-ssl.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/
+cp 000-default.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/
