@@ -1,5 +1,7 @@
 #!/bin/sh
 
+find . -name '*.pem' -delete
+
 mkdir -p tmp-keys
 cd tmp-keys
 
