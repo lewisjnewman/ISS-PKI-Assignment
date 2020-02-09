@@ -10,36 +10,44 @@ mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/private/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/certs/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/crls/
+mkdir -p gw.u1834961-u1824952.cyber.test/etc/ssl/certs/
 mkdir -p www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 mkdir -p www.u1834961-u1824952.cyber.test/etc/ssl/private/
 mkdir -p www.u1834961-u1824952.cyber.test/etc/apache2/conf-available/
 mkdir -p www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/
 mkdir -p a/
+mkdir -p a/etc/ssl/certs
 mkdir -p mobusr1/etc/ipsec.d/
 mkdir -p mobusr1/etc/ipsec.d/cacerts/
 mkdir -p mobusr1/etc/ipsec.d/private/
 mkdir -p mobusr1/etc/ipsec.d/certs/
+mkdir -p mobusr1/etc/ssl/certs/
 mkdir -p mobusr2/etc/ipsec.d/
 mkdir -p mobusr2/etc/ipsec.d/cacerts/
 mkdir -p mobusr2/etc/ipsec.d/private/
 mkdir -p mobusr2/etc/ipsec.d/certs/
+mkdir -p mobusr2/etc/ssl/certs/
 mkdir -p mobusr3/etc/ipsec.d/
 mkdir -p mobusr3/etc/ipsec.d/cacerts/
 mkdir -p mobusr3/etc/ipsec.d/private/
 mkdir -p mobusr3/etc/ipsec.d/certs/
+mkdir -p mobusr3/etc/ssl/certs/
 mkdir -p rogue1/etc/ipsec.d/
 mkdir -p rogue1/etc/ipsec.d/cacerts/
 mkdir -p rogue1/etc/ipsec.d/private/
 mkdir -p rogue1/etc/ipsec.d/certs/
+mkdir -p rogue1/etc/ssl/certs/
 mkdir -p Internet/
 mkdir -p I_CA/etc/ipsec.d/
 mkdir -p I_CA/etc/ipsec.d/cacerts/
 mkdir -p I_CA/etc/ipsec.d/certs/
 mkdir -p I_CA/etc/ipsec.d/private/
 mkdir -p I_CA/etc/ipsec.d/crls/
+mkdir -p I_CA/etc/ssl/certs/
 mkdir -p CA/etc/ipsec.d/
 mkdir -p CA/etc/ipsec.d/cacerts/
 mkdir -p CA/etc/ipsec.d/private/
+mkdir -p CA/etc/ssl/certs/
 
 touch lab.conf
 echo 'LAB_DESCRIPTION="pskassign"' >> lab.conf

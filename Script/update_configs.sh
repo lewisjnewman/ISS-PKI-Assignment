@@ -28,5 +28,5 @@ sed 's/{DEVICENAME}/rogue1/g' -i lab/rogue1/etc/ipsec.conf
 
 #update https configs
 cp ssl-params.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/conf-available/
-cp default-ssl.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/
-cp 000-default.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/
+cp default-ssl.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/default-ssl
+cp 000-default.conf lab/www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/000-default

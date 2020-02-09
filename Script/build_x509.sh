@@ -141,6 +141,9 @@ echo "Revoked rogue1 Certificate"
 cp CA.key.pem ../lab/CA/etc/ipsec.d/private/
 cp CA.crt.pem ../lab/CA/etc/ipsec.d/cacerts/
 
+cp CA.crt.pem ../lab/CA/etc/ssl/certs/     # so it works with openssl library
+
+
 # We share the root certificate with all company computers so it can be used to verify all the different certificates/identities for the organisation
 
 # copy gw keys
@@ -150,6 +153,8 @@ cp gw.crt.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/certs/
 cp CA.crt.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
 cp ica.crt.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
 
+cp CA.crt.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ssl/certs/     # so it works with openssl library
+
 
 # copy www keys
 cp www.key.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/private/
@@ -157,13 +162,16 @@ cp www.crt.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 
 cp www.dhparam.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 
+cp CA.crt.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/certs/     # so it works with openssl library
+
+
 
 # copy icakeys
 cp ica.key.pem ../lab/I_CA/etc/ipsec.d/private/
 cp ica.crt.pem ../lab/I_CA/etc/ipsec.d/cacerts/
 
 cp CA.crt.pem ../lab/I_CA/etc/ipsec.d/cacerts/
-
+cp CA.crt.pem ../lab/I_CA/etc/ssl/certs/     # so it works with openssl library
 
 
 # copy mobusr1 keys
@@ -171,7 +179,7 @@ cp mobusr1.key.pem ../lab/mobusr1/etc/ipsec.d/private/client.key.pem
 cp mobusr1.crt.pem ../lab/mobusr1/etc/ipsec.d/certs/client.crt.pem
 
 cp CA.crt.pem ../lab/mobusr1/etc/ipsec.d/cacerts/
-
+cp CA.crt.pem ../lab/mobusr1/etc/ssl/certs/     # so it works with openssl library
 
 
 # copy mobusr2 keys
@@ -179,23 +187,28 @@ cp mobusr2.key.pem ../lab/mobusr2/etc/ipsec.d/private/client.key.pem
 cp mobusr2.crt.pem ../lab/mobusr2/etc/ipsec.d/certs/client.crt.pem
 
 cp CA.crt.pem ../lab/mobusr2/etc/ipsec.d/cacerts/
+cp CA.crt.pem ../lab/mobusr2/etc/ssl/certs/     # so it works with openssl library
 
 # copy mobusr3 keys
 cp mobusr3.key.pem ../lab/mobusr3/etc/ipsec.d/private/client.key.pem
 cp mobusr3.crt.pem ../lab/mobusr3/etc/ipsec.d/certs/client.crt.pem
 
 cp CA.crt.pem ../lab/mobusr3/etc/ipsec.d/cacerts/
+cp CA.crt.pem ../lab/mobusr3/etc/ssl/certs/     # so it works with openssl library
 
 # copy rogue1 keys
 cp rogue1.key.pem ../lab/rogue1/etc/ipsec.d/private/client.key.pem
 cp rogue1.crt.pem ../lab/rogue1/etc/ipsec.d/certs/client.crt.pem
 
 cp CA.crt.pem ../lab/rogue1/etc/ipsec.d/cacerts/
+cp CA.crt.pem ../lab/mobusr3/etc/ssl/certs/     # so it works with openssl library
 
 # copy CRLs
 cp ica.crl.pem ../lab/I_CA/etc/ipsec.d/crls/
 cp ica.crl.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/crls/
 
+# copy root cert into a as well for completeness
+cp CA.crt.pem ../lab/a/etc/ssl/certs/
 
 cd ..
 
