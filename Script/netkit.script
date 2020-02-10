@@ -103,7 +103,7 @@ echo 'a2enmod headers' >> www.u1834961-u1824952.cyber.test.startup
 echo 'a2ensite default-ssl' >> www.u1834961-u1824952.cyber.test.startup
 echo 'apache2ctl start' >> www.u1834961-u1824952.cyber.test.startup
 
-echo '<h1>This is a test size</h1>' >> www.u1834961-u1824952.cyber.test/var/www/html/index.html
+echo '<h1>This is a test site</h1>' >> www.u1834961-u1824952.cyber.test/var/www/html/index.html
 
 
 touch a.startup
