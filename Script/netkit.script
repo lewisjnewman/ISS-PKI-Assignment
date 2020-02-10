@@ -5,7 +5,7 @@ rm -rf "$(dirname "$0")/lab"
 mkdir "$(dirname "$0")/lab"
 cd "$(dirname "$0")/lab"
 
-mkdir -p shared/etc/ssl/certs
+# create these directories so we can copy our root CA cert into all machies
 mkdir -p shared/etc/ipsec.d/cacerts/
 mkdir -p shared/usr/local/share/ca-certificates
 
@@ -15,43 +15,48 @@ mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/private/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/certs/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/crls/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ssl/certs/
+
 mkdir -p www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 mkdir -p www.u1834961-u1824952.cyber.test/etc/ssl/private/
 mkdir -p www.u1834961-u1824952.cyber.test/etc/apache2/conf-available/
 mkdir -p www.u1834961-u1824952.cyber.test/etc/apache2/sites-available/
+mkdir -p www.u1834961-u1824952.cyber.test/var/www/html/
+
 mkdir -p a/
-mkdir -p a/etc/ssl/certs
+
 mkdir -p mobusr1/etc/ipsec.d/
 mkdir -p mobusr1/etc/ipsec.d/cacerts/
 mkdir -p mobusr1/etc/ipsec.d/private/
 mkdir -p mobusr1/etc/ipsec.d/certs/
-mkdir -p mobusr1/etc/ssl/certs/
+
 mkdir -p mobusr2/etc/ipsec.d/
 mkdir -p mobusr2/etc/ipsec.d/cacerts/
 mkdir -p mobusr2/etc/ipsec.d/private/
 mkdir -p mobusr2/etc/ipsec.d/certs/
-mkdir -p mobusr2/etc/ssl/certs/
+
 mkdir -p mobusr3/etc/ipsec.d/
 mkdir -p mobusr3/etc/ipsec.d/cacerts/
 mkdir -p mobusr3/etc/ipsec.d/private/
 mkdir -p mobusr3/etc/ipsec.d/certs/
-mkdir -p mobusr3/etc/ssl/certs/
+
 mkdir -p rogue1/etc/ipsec.d/
 mkdir -p rogue1/etc/ipsec.d/cacerts/
 mkdir -p rogue1/etc/ipsec.d/private/
 mkdir -p rogue1/etc/ipsec.d/certs/
-mkdir -p rogue1/etc/ssl/certs/
+
 mkdir -p Internet/
+
 mkdir -p I_CA/etc/ipsec.d/
 mkdir -p I_CA/etc/ipsec.d/cacerts/
 mkdir -p I_CA/etc/ipsec.d/certs/
 mkdir -p I_CA/etc/ipsec.d/private/
 mkdir -p I_CA/etc/ipsec.d/crls/
-mkdir -p I_CA/etc/ssl/certs/
+
 mkdir -p CA/etc/ipsec.d/
 mkdir -p CA/etc/ipsec.d/cacerts/
 mkdir -p CA/etc/ipsec.d/private/
-mkdir -p CA/etc/ssl/certs/
+
+
 
 touch lab.conf
 echo 'LAB_DESCRIPTION="pskassign"' >> lab.conf
@@ -96,8 +101,10 @@ echo 'route add default gw 192.168.65.1 eth0' >> www.u1834961-u1824952.cyber.tes
 echo 'a2enmod ssl' >> www.u1834961-u1824952.cyber.test.startup
 echo 'a2enmod headers' >> www.u1834961-u1824952.cyber.test.startup
 echo 'a2ensite default-ssl' >> www.u1834961-u1824952.cyber.test.startup
-echo 'a2enconf ssl-params' >> www.u1834961-u1824952.cyber.test.startup
 echo 'apache2ctl start' >> www.u1834961-u1824952.cyber.test.startup
+
+echo '<h1>This is a test size</h1>' >> www.u1834961-u1824952.cyber.test/var/www/html/index.html
+
 
 touch a.startup
 echo 'ifconfig eth0 192.168.65.20/24 up' >> a.startup

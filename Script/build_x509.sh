@@ -1,13 +1,13 @@
 #!/bin/sh
 
-find . -name '*.pem' -delete
-
+# generate all our keys in a tmp folder first to
+# avoid complicated paths in our ipsec and openssl commands
 mkdir -p tmp-keys
 cd tmp-keys
 
 ###############################################################################################################
 ###############################################################################################################
-#Root certificate creation
+# Root certificate creation
 
 # generate root CA key
 ipsec pki --gen --type rsa --size 4096 --outform pem > CA.key.pem
@@ -19,7 +19,7 @@ echo "Created Root CA Certificate"
 
 ###############################################################################################################
 ###############################################################################################################
-#www certificate creation
+# www certificate creation
 
 # generate key
 ipsec pki --gen --type rsa --size 4096 --outform pem > www.key.pem
@@ -37,7 +37,7 @@ openssl dhparam -out www.dhparam.pem 2048
 
 ###############################################################################################################
 ###############################################################################################################
-#vpn gw certificate creation
+# gw certificate creation
 
 # generate key
 ipsec pki --gen --type rsa --size 4096 --outform pem > gw.key.pem
@@ -53,6 +53,7 @@ echo "Created GW Certificate"
 ###############################################################################################################
 ###############################################################################################################
 # ICA
+
 # generate key
 ipsec pki --gen --type rsa --size 4096 --outform pem > ica.key.pem
 
@@ -66,8 +67,8 @@ echo "Created Intermediate CA Certificate"
 
 ###############################################################################################################
 ###############################################################################################################
+# mobusr1
 
-#mobUsr1
 # generate key
 ipsec pki --gen --type rsa --size 4096 --outform pem > mobusr1.key.pem
 
@@ -81,8 +82,8 @@ echo "Created mobusr1 Certificate"
 
 ###############################################################################################################
 ###############################################################################################################
+# mobusr2
 
-#mobUsr2
 # generate key
 ipsec pki --gen --type rsa --size 4096 --outform pem > mobusr2.key.pem
 
@@ -96,8 +97,8 @@ echo "Created mobusr2 Certificate"
 
 ###############################################################################################################
 ###############################################################################################################
+# mobusr3
 
-#mobUsr3
 # generate key
 ipsec pki --gen --type rsa --size 4096 --outform pem > mobusr3.key.pem
 
@@ -111,8 +112,8 @@ echo "Created mobusr3 Certificate"
 
 ###############################################################################################################
 ###############################################################################################################
-
 #rogue1
+
 # generate key
 ipsec pki --gen --type rsa --size 4096 --outform pem > rogue1.key.pem
 
@@ -157,6 +158,7 @@ cp ica.crt.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
 cp www.key.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/private/
 cp www.crt.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 
+# copy additional diffie hellman parameters across
 cp www.dhparam.pem ../lab/www.u1834961-u1824952.cyber.test/etc/ssl/certs/
 
 
@@ -196,7 +198,7 @@ cp CA.crt.pem ../lab/rogue1/etc/ipsec.d/cacerts/
 cp ica.crl.pem ../lab/I_CA/etc/ipsec.d/crls/
 cp ica.crl.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/crls/
 
-# so x509 works with openssl library as well as strongswan pki
+# add so our root cert works with openssl library as well as strongswan pki
 cp CA.crt.pem ../lab/shared/usr/local/share/ca-certificates/CA.crt     
 
 
