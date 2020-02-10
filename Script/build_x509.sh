@@ -142,11 +142,6 @@ echo "Revoked rogue1 Certificate"
 cp CA.key.pem ../lab/CA/etc/ipsec.d/private/
 cp CA.crt.pem ../lab/CA/etc/ipsec.d/cacerts/
 
-cp CA.crt.pem ../lab/CA/etc/ssl/certs/     # so it works with openssl library
-
-
-# We share the root certificate with all company computers so it can be used to verify all the different certificates/identities for the organisation
-
 # copy gw keys
 cp gw.key.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/private/
 cp gw.crt.pem ../lab/gw.u1834961-u1824952.cyber.test/etc/ipsec.d/certs/
