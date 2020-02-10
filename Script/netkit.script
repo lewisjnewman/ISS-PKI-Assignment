@@ -5,6 +5,10 @@ rm -rf "$(dirname "$0")/lab"
 mkdir "$(dirname "$0")/lab"
 cd "$(dirname "$0")/lab"
 
+mkdir -p shared/etc/ssl/certs
+mkdir -p shared/etc/ipsec.d/cacerts/
+mkdir -p shared/usr/local/share/ca-certificates
+
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/cacerts/
 mkdir -p gw.u1834961-u1824952.cyber.test/etc/ipsec.d/private/
@@ -71,6 +75,9 @@ touch lab.dep
 echo 'gw.u1834961-u1824952.cyber.test: Internet' >> lab.dep
 echo 'mobusr1 mobusr2 mobusr3 rogue1: gw.u1834961-u1824952.cyber.test' >> lab.dep
 echo 'I_CA a www.u1834961-u1824952.cyber.test: gw.u1834961-u1824952.cyber.test' >> lab.dep
+
+touch shared.startup
+echo 'update-ca-certificates' >> shared.startup
 
 touch gw.u1834961-u1824952.cyber.test.startup
 echo 'ifconfig eth0 192.168.65.1/24 up' >> gw.u1834961-u1824952.cyber.test.startup
